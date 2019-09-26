@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class RightHandCaster : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public const int starMask = 1 << 9;
+    // RIP Start
 
     // Update is called once per frame
     void Update()
     {
-        
+        Vector3 wandDir = transform.TransformDirection(Vector3.forward);
+        Debug.DrawRay(transform.position, wandDir*100F);
+        RaycastHit starHit;
+        if (Physics.Raycast(transform.position, wandDir, out starHit, Mathf.Infinity, starMask))
+        {
+            Debug.Log(starHit.collider.gameObject);
+                              //hitting star
+        }
     }
 }

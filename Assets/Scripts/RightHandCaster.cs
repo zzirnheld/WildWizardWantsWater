@@ -7,6 +7,8 @@ public class RightHandCaster : MonoBehaviour
     public const int starMask = 1 << 9;
     // RIP Start
 
+    public GameObject[] Stars;
+
     // Update is called once per frame
     void Update()
     {
@@ -18,6 +20,11 @@ public class RightHandCaster : MonoBehaviour
             Debug.Log(starHit.collider.gameObject);
                               //hitting star
         }
+    }
+
+    private int StarNumberFromObject()
+    {
+        return 0;
     }
 
 }

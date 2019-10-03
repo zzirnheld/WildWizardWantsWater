@@ -9,6 +9,8 @@ public class RightHandCaster : MonoBehaviour
 
     public GameObject[] Stars;
 
+    private int lastStarHit = -1;
+
     // Update is called once per frame
     void Update()
     {
@@ -22,9 +24,19 @@ public class RightHandCaster : MonoBehaviour
         }
     }
 
-    private int StarNumberFromObject()
+    private int StarNumberFromObject(GameObject obj)
     {
-        return 0;
+        for(int i = 0; i < Stars.Length; i++)
+        {
+            if (obj == Stars[i]) return i;
+        }
+
+        return -1;
+    }
+
+    private void HitStar(int starNum)
+    {
+        
     }
 
 }

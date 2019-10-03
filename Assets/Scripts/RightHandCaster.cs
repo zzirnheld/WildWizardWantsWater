@@ -4,12 +4,33 @@ using UnityEngine;
 
 public class RightHandCaster : MonoBehaviour
 {
+    public enum Spells
+    {
+        Fire
+    }
+
     public const int starMask = 1 << 9;
     // RIP Start
 
     public GameObject[] Stars;
 
     private int lastStarHit = -1;
+    private HashSet<Pair> lines;
+
+    private Dictionary<HashSet<Pair>, Spells> spellsDictionary;
+
+    void Awake()
+    {
+        lines = new HashSet<Pair>();
+
+        spellsDictionary.Add(new HashSet<Pair>
+        {
+            new Pair(7, 4),
+            new Pair(4, 2),
+            new Pair(2, 6),
+            new Pair(6, 9)
+        }, Spells.Fire);
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,7 +57,30 @@ public class RightHandCaster : MonoBehaviour
 
     private void HitStar(int starNum)
     {
-        
+        if(lastStarHit != -1)
+        {
+            lines.Add(new Pair(lastStarHit, starNum));
+            Spells? spell = CheckSetAsSpell();
+            if(spell != null)
+            {
+                lastStarHit = -1;
+            }
+        }
+
+        lastStarHit = starNum;
+    }
+
+    private Spells? CheckSetAsSpell()
+    {
+        foreach(KeyValuePair<HashSet<Pair>, Spells> pair in spellsDictionary)
+        {
+            if (lines.SetEquals(pair.Key))
+            {
+                return pair.Value;
+            }
+        }
+
+        return null;
     }
 
 }

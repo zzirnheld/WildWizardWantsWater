@@ -60,6 +60,7 @@ public class RightHandCaster : MonoBehaviour
     {
         if(lastStarHit != -1 && lastStarHit != starNum)
         {
+            Debug.Log($"Adding line between {lastStarHit} and {starNum}");
             lines.Add(new Pair(lastStarHit, starNum));
             CastSpellIfValid();
         }
@@ -71,6 +72,7 @@ public class RightHandCaster : MonoBehaviour
     {
         foreach(KeyValuePair<HashSet<Pair>, Spells> pair in spellsDictionary)
         {
+            Debug.Log($"Comparing set {lines} and {pair.Key}");
             if (lines.SetEquals(pair.Key))
             {
                 return pair.Value;

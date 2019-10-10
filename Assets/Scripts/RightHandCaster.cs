@@ -58,7 +58,7 @@ public class RightHandCaster : MonoBehaviour
 
     private void HitStar(int starNum)
     {
-        if(lastStarHit != -1)
+        if(lastStarHit != -1 && lastStarHit != starNum)
         {
             lines.Add(new Pair(lastStarHit, starNum));
             Spells? spell = CheckSetAsSpell();

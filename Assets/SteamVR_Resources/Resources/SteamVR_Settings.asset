@@ -28,3 +28,5 @@ MonoBehaviour:
     needsReinit: 1
   mixedRealityCameraInputSource: 11
   mixedRealityActionSetAutoEnable: 1
+  previewHandLeft: {fileID: 0}
+  previewHandRight: {fileID: 0}

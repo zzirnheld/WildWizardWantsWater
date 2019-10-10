@@ -8,14 +8,15 @@ public class RightHandPalette : MonoBehaviour
     public GameObject Palette;
     public GameObject Right_Hand;
     #region steamvractions
-    public SteamVR_Action_Boolean PaletteTwo;
+    public SteamVR_Action_Boolean paletteaction;
     #endregion steamvractions
     bool isSummoned = false;
     // Update is called once per frame
     void Update()
     {
-        if (PaletteTwo.state == false)
+        if (paletteaction.state == true)
         {
+            print("in");
             if (!isSummoned)
             {
                 Palette.transform.localScale = new Vector3(0F, 0F, 0F);

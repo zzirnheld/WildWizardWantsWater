@@ -39,6 +39,8 @@ public class RightHandPalette : MonoBehaviour
                                                                                                             //Palette.transform.rotation =  Quaternion.LookRotation(wandDir);
             Palette.transform.LookAt(Right_Hand.transform);
             Palette.transform.rotation *= Quaternion.Euler(90, 0, 0);
+            Palette.transform.rotation *= Quaternion.Euler(0, 180, 0);
+
             isSummoned = true;
         }
         else

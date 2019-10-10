@@ -5,6 +5,7 @@ using Valve.VR;
 
 public class RightHandCaster : MonoBehaviour
 {
+    public GameObject Beam;
 
     #region steamvractions
     public SteamVR_Action_Boolean TriggerHeld;
@@ -44,6 +45,14 @@ public class RightHandCaster : MonoBehaviour
         Vector3 wandDir = transform.TransformDirection(Vector3.forward);
         Debug.DrawRay(transform.position, wandDir*100F);
         RaycastHit starHit;
+        if (TriggerHeld.state)
+        {
+            Beam.SetActive(true);
+        }
+        else
+        {
+            Beam.SetActive(false);
+        }
         if (Physics.Raycast(transform.position, wandDir, out starHit, Mathf.Infinity, starMask))
         {
             Debug.Log(starHit.collider.gameObject);

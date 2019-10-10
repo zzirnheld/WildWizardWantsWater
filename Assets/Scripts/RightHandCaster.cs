@@ -23,14 +23,13 @@ public class RightHandCaster : MonoBehaviour
     {
         lines = new HashSet<Pair>();
 
-        /*spellsDictionary.Add(new HashSet<Pair>
+        spellsDictionary.Add(new HashSet<Pair>
         {
             new Pair(7, 4),
             new Pair(4, 2),
             new Pair(2, 6),
             new Pair(6, 9)
         }, Spells.Fire);
-        */
     }
 
     // Update is called once per frame
@@ -42,7 +41,8 @@ public class RightHandCaster : MonoBehaviour
         if (Physics.Raycast(transform.position, wandDir, out starHit, Mathf.Infinity, starMask))
         {
             Debug.Log(starHit.collider.gameObject);
-                              //hitting star
+            //hitting star
+            HitStar(StarNumberFromObject(starHit.collider.gameObject));
         }
     }
 
@@ -61,11 +61,7 @@ public class RightHandCaster : MonoBehaviour
         if(lastStarHit != -1 && lastStarHit != starNum)
         {
             lines.Add(new Pair(lastStarHit, starNum));
-            Spells? spell = CheckSetAsSpell();
-            if(spell != null)
-            {
-                lastStarHit = -1;
-            }
+            CastSpellIfValid();
         }
 
         lastStarHit = starNum;
@@ -82,6 +78,20 @@ public class RightHandCaster : MonoBehaviour
         }
 
         return null;
+    }
+
+    //returns whether or not a spell was cast
+    public bool CastSpellIfValid()
+    {
+        Spells? spell = CheckSetAsSpell();
+        if (spell != null)
+        {
+            lastStarHit = -1;
+            Debug.Log("CASTING " + spell);
+            return true;
+        }
+
+        return false;
     }
 
 }

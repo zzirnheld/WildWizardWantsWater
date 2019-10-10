@@ -13,51 +13,11 @@
       "poses": [
         {
           "output": "/actions/default/in/pose",
-          "path": "/user/hand/left/pose/base"
-        },
-        {
-          "output": "/actions/default/in/pose",
-          "path": "/user/hand/right/pose/base"
-        },
-        {
-          "output": "/actions/default/in/pose",
-          "path": "/user/hand/left/pose/front"
-        },
-        {
-          "output": "/actions/default/in/pose",
-          "path": "/user/hand/left/pose/handgrip"
-        },
-        {
-          "output": "/actions/default/in/pose",
-          "path": "/user/hand/right/pose/handgrip"
-        },
-        {
-          "output": "/actions/default/in/pose",
-          "path": "/user/hand/right/pose/front"
-        },
-        {
-          "output": "/actions/default/in/pose",
-          "path": "/user/hand/left/pose/gdc2015"
-        },
-        {
-          "output": "/actions/default/in/pose",
-          "path": "/user/hand/right/pose/gdc2015"
-        },
-        {
-          "output": "/actions/default/in/pose",
           "path": "/user/hand/left/pose/raw"
         },
         {
           "output": "/actions/default/in/pose",
           "path": "/user/hand/right/pose/raw"
-        },
-        {
-          "output": "/actions/default/in/pose",
-          "path": "/user/hand/left/pose/tip"
-        },
-        {
-          "output": "/actions/default/in/pose",
-          "path": "/user/hand/right/pose/tip"
         }
       ],
       "haptics": [

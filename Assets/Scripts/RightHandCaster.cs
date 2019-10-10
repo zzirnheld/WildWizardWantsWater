@@ -1,9 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
 
 public class RightHandCaster : MonoBehaviour
 {
+
+    #region steamvractions
+    public SteamVR_Action_Boolean TriggerHeld;
+    #endregion steamvractions
+
     public enum Spells
     {
         Fire
@@ -22,7 +28,7 @@ public class RightHandCaster : MonoBehaviour
     void Awake()
     {
         lines = new HashSet<Pair>();
-
+        spellsDictionary = new Dictionary<HashSet<Pair>, Spells>();
         spellsDictionary.Add(new HashSet<Pair>
         {
             new Pair(7, 4),
@@ -42,7 +48,10 @@ public class RightHandCaster : MonoBehaviour
         {
             Debug.Log(starHit.collider.gameObject);
             //hitting star
-            HitStar(StarNumberFromObject(starHit.collider.gameObject));
+            if (TriggerHeld.state)
+            {
+                HitStar(StarNumberFromObject(starHit.collider.gameObject));
+            }
         }
     }
 

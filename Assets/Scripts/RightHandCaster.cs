@@ -23,13 +23,14 @@ public class RightHandCaster : MonoBehaviour
     {
         lines = new HashSet<Pair>();
 
-        spellsDictionary.Add(new HashSet<Pair>
+        /*spellsDictionary.Add(new HashSet<Pair>
         {
             new Pair(7, 4),
             new Pair(4, 2),
             new Pair(2, 6),
             new Pair(6, 9)
         }, Spells.Fire);
+        */
     }
 
     // Update is called once per frame

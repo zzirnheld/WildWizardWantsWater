@@ -7,6 +7,8 @@ public class RightHandPalette : MonoBehaviour
 {
     public GameObject Palette;
     public GameObject Right_Hand;
+
+    public RightHandCaster rightHandCaster;
     #region steamvractions
     public SteamVR_Action_Boolean paletteaction;
     #endregion steamvractions
@@ -45,6 +47,7 @@ public class RightHandPalette : MonoBehaviour
         }
         else
         {
+            rightHandCaster.CastSpellIfValid();
             Palette.SetActive(false);
             isSummoned = false;
         }

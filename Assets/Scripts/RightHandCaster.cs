@@ -32,10 +32,10 @@ public class RightHandCaster : MonoBehaviour
         spellsDictionary = new Dictionary<HashSet<Pair>, Spells>();
         spellsDictionary.Add(new HashSet<Pair>
         {
-            new Pair(7, 4),
-            new Pair(4, 2),
-            new Pair(2, 6),
-            new Pair(6, 9)
+            new Pair(6, 3),
+            new Pair(3, 1),
+            new Pair(1, 5),
+            new Pair(5, 8)
         }, Spells.Fire);
     }
 
@@ -100,6 +100,11 @@ public class RightHandCaster : MonoBehaviour
         return null;
     }
 
+    private void ClearLinesSet()
+    {
+        lines.Clear();
+    }
+
     //returns whether or not a spell was cast
     public bool CastSpellIfValid()
     {
@@ -108,10 +113,10 @@ public class RightHandCaster : MonoBehaviour
         {
             lastStarHit = -1;
             Debug.Log("CASTING " + spell);
-            return true;
         }
 
-        return false;
+        ClearLinesSet();
+        return spell != null;
     }
 
 }

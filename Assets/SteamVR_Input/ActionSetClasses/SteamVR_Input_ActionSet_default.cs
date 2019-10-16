@@ -25,11 +25,11 @@ namespace Valve.VR
             }
         }
         
-        public virtual SteamVR_Action_Pose pose
+        public virtual SteamVR_Action_Boolean PaletteTwo
         {
             get
             {
-                return SteamVR_Actions.default_pose;
+                return SteamVR_Actions.default_PaletteTwo;
             }
         }
         
@@ -38,6 +38,14 @@ namespace Valve.VR
             get
             {
                 return SteamVR_Actions.default_TriggerHeld;
+            }
+        }
+        
+        public virtual SteamVR_Action_Pose pose
+        {
+            get
+            {
+                return SteamVR_Actions.default_pose;
             }
         }
         

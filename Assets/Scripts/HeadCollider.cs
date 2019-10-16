@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class HeadCollider : MonoBehaviour
 {
+    public GameObject canvas;
+
+    public Animator winFadeOut;
+    AudioSource slurp;
     public GameObject water;
     public GameObject head;
+    bool slurpPlayed = false;
 
     BoxCollider waterCol;
     BoxCollider headCol;
@@ -13,8 +18,11 @@ public class HeadCollider : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        slurp = head.GetComponent<AudioSource>();
+        winFadeOut = canvas.GetComponent<Animator>();
         waterCol = water.GetComponent<BoxCollider>();
         headCol = head.GetComponent<BoxCollider>();
+        slurpPlayed = false;
     }
 
     // Update is called once per frame
@@ -22,7 +30,13 @@ public class HeadCollider : MonoBehaviour
     {
         if (waterCol.bounds.Intersects(headCol.bounds))
         {
-            print("WINWINWINWINWIN");//WIN CONDITION, NEXT LEVEL
+            if (!slurpPlayed) {
+                slurpPlayed = true;
+                slurp.PlayOneShot(slurp.clip, 1F);
+                winFadeOut.SetTrigger("fadeOut");
+                print("WINWINWINWINWIN");//WIN CONDITION, NEXT LEVEL
+
+            }
         }
     }
 }

@@ -5,7 +5,10 @@ using Valve.VR;
 
 public class RightHandCaster : MonoBehaviour
 {
+    public GameObject LR;
+    private int drawIteration = 0;
     public GameObject Beam;
+    LineRenderer LRenderer;
 
     #region steamvractions
     public SteamVR_Action_Boolean TriggerHeld;
@@ -22,12 +25,16 @@ public class RightHandCaster : MonoBehaviour
     public GameObject[] Stars;
 
     private int lastStarHit = -1;
+    private GameObject lastStarHitObj = null;
     private HashSet<Pair> lines;
 
     private Dictionary<HashSet<Pair>, Spells> spellsDictionary;
 
     void Awake()
     {
+        LRenderer = LR.GetComponent<LineRenderer>();
+        LRenderer.positionCount = 15;
+
         lines = new HashSet<Pair>();
         spellsDictionary = new Dictionary<HashSet<Pair>, Spells>();
         spellsDictionary.Add(new HashSet<Pair>
@@ -59,7 +66,7 @@ public class RightHandCaster : MonoBehaviour
             //hitting star
             if (TriggerHeld.state)
             {
-                HitStar(StarNumberFromObject(starHit.collider.gameObject));
+                HitStar(starHit.collider.gameObject, StarNumberFromObject(starHit.collider.gameObject));
             }
         }
     }
@@ -74,16 +81,28 @@ public class RightHandCaster : MonoBehaviour
         return -1;
     }
 
-    private void HitStar(int starNum)
+    private void HitStar(GameObject starHit, int starNum)
     {
-        if(lastStarHit != -1 && lastStarHit != starNum)
+        if (lastStarHit != -1 && lastStarHit != starNum)
         {
             Debug.Log($"Adding line between {lastStarHit} and {starNum}");
+            if (lastStarHitObj != null) {
+                print($"AAAAA {drawIteration} AAAAAAAAA");
+                if (drawIteration == 0)
+                {
+                    LRenderer.SetPosition(0, lastStarHitObj.transform.position);
+                }
+                
+                LRenderer.SetPosition(drawIteration, starHit.transform.position);
+                drawIteration++;
+            }
             lines.Add(new Pair(lastStarHit, starNum));
+
             CastSpellIfValid();
         }
 
         lastStarHit = starNum;
+        lastStarHitObj = starHit;
     }
 
     private Spells? CheckSetAsSpell()

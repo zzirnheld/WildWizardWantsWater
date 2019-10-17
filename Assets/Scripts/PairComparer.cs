@@ -13,8 +13,8 @@ public class PairComparer : IEqualityComparer<Pair>
 
     public int GetHashCode(Pair obj)
     {
-        Debug.Log($"Returning hash code {obj.x * 10 + obj.y}");
-        return obj.x * 10 + obj.y;
+        Debug.Log($"Returning hash code {(obj.x > obj.y ? obj.x * 10 + obj.y : obj.y * 10 + obj.x)}");
+        return obj.x > obj.y ? obj.x * 10 + obj.y : obj.y * 10 + obj.x;
     }
     
 }

@@ -8,8 +8,8 @@ public class RightHandCaster : MonoBehaviour
     public GameObject LR;
     private int drawIteration = 0;
     public GameObject Beam;
-    LineRenderer LRenderer;
-    SpellCasting spellCasting;
+    public LineRenderer LRenderer;
+    public SpellCasting spellCasting;
 
     #region steamvractions
     public SteamVR_Action_Boolean TriggerHeld;
@@ -146,15 +146,15 @@ public class RightHandCaster : MonoBehaviour
     public bool CastSpellIfValid()
     {
         Spells? spell = CheckSetAsSpell();
-        if (spell != null)
+        if (spell.HasValue)
         {
             lastStarHit = -1;
             Debug.Log("CASTING " + spell);
-            //TODO cast spell
             ClearLinesSet();
+            spellCasting.startSpell(spell.Value);
         }
 
-        return spell != null;
+        return spell.HasValue;
     }
 
 

@@ -11,9 +11,11 @@ public class SpellCasting : MonoBehaviour
 
     public void startSpell(RightHandCaster.Spells spell)
     {
+        Debug.Log($"Starting {spell}");
         currSpell = spell;
         if(spell == RightHandCaster.Spells.Fire)
         {
+            Debug.Log("if statement");
             fireWand.SetActive(true);
         }
     }

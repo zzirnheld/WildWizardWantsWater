@@ -33,7 +33,7 @@ public class RightHandCaster : MonoBehaviour
     void Awake()
     {
         LRenderer = LR.GetComponent<LineRenderer>();
-        LRenderer.positionCount = 15;
+        LRenderer.positionCount = 20;
 
         lines = new HashSet<Pair>();
         spellsDictionary = new Dictionary<HashSet<Pair>, Spells>();
@@ -92,7 +92,7 @@ public class RightHandCaster : MonoBehaviour
                 {
                     LRenderer.SetPosition(0, lastStarHitObj.transform.position);
                 }
-                
+                LRenderer.SetPosition(drawIteration-1, lastStarHitObj.transform.position);
                 LRenderer.SetPosition(drawIteration, starHit.transform.position);
                 drawIteration++;
             }

@@ -10,12 +10,12 @@
       "type": "boolean"
     },
     {
-      "name": "/actions/default/in/TriggerHeld",
-      "type": "boolean"
-    },
-    {
       "name": "/actions/default/in/pose",
       "type": "pose"
+    },
+    {
+      "name": "/actions/default/in/TriggerHeld",
+      "type": "boolean"
     },
     {
       "name": "/actions/default/out/Haptic",

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class HeadCollider : MonoBehaviour
 {
-    public GameObject canvas;
+    public GameObject light1;
+    public GameObject light2;
 
-    public Animator winFadeOut;
+    public Animator light1ani;
+    public Animator light2ani;
     AudioSource slurp;
     public GameObject water;
     public GameObject head;
@@ -19,7 +21,8 @@ public class HeadCollider : MonoBehaviour
     void Start()
     {
         slurp = head.GetComponent<AudioSource>();
-        winFadeOut = canvas.GetComponent<Animator>();
+        light1ani = light1.GetComponent<Animator>();
+        light2ani = light2.GetComponent<Animator>();
         waterCol = water.GetComponent<BoxCollider>();
         headCol = head.GetComponent<BoxCollider>();
         slurpPlayed = false;
@@ -33,9 +36,9 @@ public class HeadCollider : MonoBehaviour
             if (!slurpPlayed) {
                 slurpPlayed = true;
                 slurp.PlayOneShot(slurp.clip, 1F);
-                winFadeOut.SetTrigger("fadeOut");
+                light1ani.SetTrigger("fadeOut");
+                light2ani.SetTrigger("fadeOut");
                 print("WINWINWINWINWIN");//WIN CONDITION, NEXT LEVEL
-
             }
         }
     }

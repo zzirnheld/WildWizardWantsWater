@@ -17,7 +17,8 @@ public class RightHandCaster : MonoBehaviour
 
     public enum Spells
     {
-        Fire
+        Fire,
+        Levitate
     }
 
     public const int starMask = 1 << 9;
@@ -48,6 +49,15 @@ public class RightHandCaster : MonoBehaviour
         fireSet.Add(new Pair(1, 5));
         fireSet.Add(new Pair(5, 8));
         spellsDictionary.Add(fireSet, Spells.Fire);
+
+        HashSet<Pair> levitateSet = new HashSet<Pair>(pairComparer);
+        levitateSet.Add(new Pair(7, 4));
+        levitateSet.Add(new Pair(4, 1));
+        levitateSet.Add(new Pair(1, 3));
+        levitateSet.Add(new Pair(3, 4));
+        levitateSet.Add(new Pair(4, 5));
+        levitateSet.Add(new Pair(5, 1));
+        spellsDictionary.Add(levitateSet, Spells.Levitate);
     }
 
     // Update is called once per frame

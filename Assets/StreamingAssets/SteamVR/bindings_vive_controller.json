@@ -37,20 +37,23 @@
             {
                "inputs" : {
                   "click" : {
+                     "output" : "/actions/default/in/triggerheld"
+                  },
+                  "pull" : {
+                     "output" : "/actions/default/in/squeeze"
+                  }
+               },
+               "mode" : "trigger",
+               "path" : "/user/hand/right/input/trigger"
+            },
+            {
+               "inputs" : {
+                  "click" : {
                      "output" : "/actions/default/in/paletteaction"
                   }
                },
                "mode" : "button",
                "path" : "/user/hand/right/input/trackpad"
-            },
-            {
-               "inputs" : {
-                  "click" : {
-                     "output" : "/actions/default/in/triggerheld"
-                  }
-               },
-               "mode" : "trigger",
-               "path" : "/user/hand/right/input/trigger"
             }
          ]
       },

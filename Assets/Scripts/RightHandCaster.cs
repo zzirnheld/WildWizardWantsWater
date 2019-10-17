@@ -33,7 +33,7 @@ public class RightHandCaster : MonoBehaviour
     void Awake()
     {
         LRenderer = LR.GetComponent<LineRenderer>();
-        LRenderer.positionCount = 20;
+        LRenderer.positionCount = 0;
 
         lines = new HashSet<Pair>();
         spellsDictionary = new Dictionary<HashSet<Pair>, Spells>();
@@ -88,13 +88,13 @@ public class RightHandCaster : MonoBehaviour
             Debug.Log($"Adding line between {lastStarHit} and {starNum}");
             if (lastStarHitObj != null) {
                 print($"AAAAA {drawIteration} AAAAAAAAA");
-                if (drawIteration == 0)
+                if (LRenderer.positionCount == 0)
                 {
-                    LRenderer.SetPosition(0, lastStarHitObj.transform.position);
+                    LRenderer.positionCount++;
+                    LRenderer.SetPosition(LRenderer.positionCount - 1, lastStarHitObj.transform.position);
                 }
-                LRenderer.SetPosition(drawIteration-1, lastStarHitObj.transform.position);
-                LRenderer.SetPosition(drawIteration, starHit.transform.position);
-                drawIteration++;
+                LRenderer.positionCount++;
+                LRenderer.SetPosition(LRenderer.positionCount - 1, starHit.transform.position);
             }
             lines.Add(new Pair(lastStarHit, starNum));
 
@@ -109,7 +109,7 @@ public class RightHandCaster : MonoBehaviour
     {
         foreach(KeyValuePair<HashSet<Pair>, Spells> pair in spellsDictionary)
         {
-            Debug.Log($"Comparing set {lines} and {pair.Key}");
+            Debug.Log($"Comparing set {SetToString(lines)} and {SetToString(pair.Key)}, set equals says {lines.SetEquals(pair.Key)}");
             if (lines.SetEquals(pair.Key))
             {
                 return pair.Value;
@@ -119,9 +119,12 @@ public class RightHandCaster : MonoBehaviour
         return null;
     }
 
-    private void ClearLinesSet()
+    public void ClearLinesSet()
     {
         lines.Clear();
+        lastStarHit = -1;
+        lastStarHitObj = null;
+        LRenderer.positionCount = 0;
     }
 
     //returns whether or not a spell was cast
@@ -132,10 +135,21 @@ public class RightHandCaster : MonoBehaviour
         {
             lastStarHit = -1;
             Debug.Log("CASTING " + spell);
+            //TODO cast spell
+            ClearLinesSet();
         }
 
-        ClearLinesSet();
         return spell != null;
     }
 
+
+    private string SetToString(HashSet<Pair> set)
+    {
+        string str = "";
+        foreach(Pair p in set)
+        {
+            str += p.ToString();
+        }
+        return str;
+    }
 }

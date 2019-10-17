@@ -19,4 +19,9 @@ public class Pair
         Pair p = obj as Pair;
         return (x == p.x && y == p.y) || (x == p.y && y == p.x);
     }
+
+    public override string ToString()
+    {
+        return x.ToString() + ", " + y.ToString();
+    }
 }

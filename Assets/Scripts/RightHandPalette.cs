@@ -48,6 +48,7 @@ public class RightHandPalette : MonoBehaviour
         else
         {
             rightHandCaster.CastSpellIfValid();
+            rightHandCaster.ClearLinesSet();
             Palette.SetActive(false);
             isSummoned = false;
         }

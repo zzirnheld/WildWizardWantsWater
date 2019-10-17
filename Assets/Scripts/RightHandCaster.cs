@@ -27,6 +27,7 @@ public class RightHandCaster : MonoBehaviour
     private int lastStarHit = -1;
     private GameObject lastStarHitObj = null;
     private HashSet<Pair> lines;
+    private PairComparer pairComparer;
 
     private Dictionary<HashSet<Pair>, Spells> spellsDictionary;
 
@@ -35,15 +36,17 @@ public class RightHandCaster : MonoBehaviour
         LRenderer = LR.GetComponent<LineRenderer>();
         LRenderer.positionCount = 0;
 
-        lines = new HashSet<Pair>();
+        pairComparer = new PairComparer();
+
+        lines = new HashSet<Pair>(pairComparer);
         spellsDictionary = new Dictionary<HashSet<Pair>, Spells>();
-        spellsDictionary.Add(new HashSet<Pair>
-        {
-            new Pair(6, 3),
-            new Pair(3, 1),
-            new Pair(1, 5),
-            new Pair(5, 8)
-        }, Spells.Fire);
+
+        HashSet<Pair> fireSet = new HashSet<Pair>(pairComparer);
+        fireSet.Add(new Pair(6, 3));
+        fireSet.Add(new Pair(3, 1));
+        fireSet.Add(new Pair(1, 5));
+        fireSet.Add(new Pair(5, 8));
+        spellsDictionary.Add(fireSet, Spells.Fire);
     }
 
     // Update is called once per frame

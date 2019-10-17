@@ -9,6 +9,7 @@ public class RightHandCaster : MonoBehaviour
     private int drawIteration = 0;
     public GameObject Beam;
     LineRenderer LRenderer;
+    SpellCasting spellCasting;
 
     #region steamvractions
     public SteamVR_Action_Boolean TriggerHeld;
@@ -128,6 +129,7 @@ public class RightHandCaster : MonoBehaviour
         lastStarHit = -1;
         lastStarHitObj = null;
         LRenderer.positionCount = 0;
+        spellCasting.endSpell();
     }
 
     //returns whether or not a spell was cast

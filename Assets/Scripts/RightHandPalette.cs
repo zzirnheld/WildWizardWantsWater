@@ -37,7 +37,7 @@ public class RightHandPalette : MonoBehaviour
             //i = i + 1;
             //}
             Vector3 wandDir = transform.TransformDirection(Vector3.forward);
-            Palette.transform.position = Right_Hand.transform.position + (Right_Hand.transform.forward * 2);//transform.TransformPoint(wandDir);//Right_Hand.transform.position + wandDir;
+            Palette.transform.position = Right_Hand.transform.position + (Right_Hand.transform.forward * 1);//transform.TransformPoint(wandDir);//Right_Hand.transform.position + wandDir;
                                                                                                             //Palette.transform.rotation =  Quaternion.LookRotation(wandDir);
             Palette.transform.LookAt(Right_Hand.transform);
             Palette.transform.rotation *= Quaternion.Euler(90, 0, 0);

@@ -83,7 +83,7 @@ public class RightHandCaster : MonoBehaviour
         }
         if (Physics.Raycast(transform.position, wandDir, out starHit, Mathf.Infinity, starMask))
         {
-            Debug.Log(starHit.collider.gameObject);
+            //Debug.Log($"hit {starHit.collider.gameObject.name}");
             //hitting star
             if (TriggerHeld.state)
             {
@@ -108,7 +108,6 @@ public class RightHandCaster : MonoBehaviour
         {
             Debug.Log($"Adding line between {lastStarHit} and {starNum}");
             if (lastStarHitObj != null) {
-                print($"AAAAA {drawIteration} AAAAAAAAA");
                 if (LRenderer.positionCount == 0)
                 {
                     LRenderer.positionCount++;

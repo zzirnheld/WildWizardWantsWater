@@ -50,7 +50,7 @@ public class RightHandCaster : MonoBehaviour
         fireSet.Add(new Pair(3, 1));
         fireSet.Add(new Pair(1, 5));
         fireSet.Add(new Pair(5, 8));
-        spellsDictionary.Add(fireSet, Spells.Fire);
+        spellsDictionary.Add(fireSet, Spells.Teleport);
 
         HashSet<Pair> levitateSet = new HashSet<Pair>(pairComparer);
         levitateSet.Add(new Pair(7, 4));
@@ -141,7 +141,7 @@ public class RightHandCaster : MonoBehaviour
         lastStarHit = -1;
         lastStarHitObj = null;
         LRenderer.positionCount = 0;
-        spellCasting.CancelSpells();
+        spellCasting.ResetWand();
     }
 
     //returns whether or not a spell was cast

@@ -8,19 +8,12 @@ public abstract class Spell
     {
         switch (spell)
         {
-            case RightHandCaster.Spells.Fire:
-                return null;
-                break;
-            case RightHandCaster.Spells.Levitate:
-                return null;
-                break;
             case RightHandCaster.Spells.Teleport:
                 return new TeleportSpell();
-                break;
-            default:
-                return null;
-                break;
         }
+
+        Debug.Log($"No current spell ready for spell enum {spell}");
+        return null;
     }
 
     public abstract void Cast(SpellCasting caster);

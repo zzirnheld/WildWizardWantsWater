@@ -43,19 +43,20 @@ public class SpellCasting : MonoBehaviour
     {
         if (!currSpellHeld.HasValue)
         {
-            CancelSpells();
+            ResetWand();
             return;
         }
 
         Spell toCast = Spell.CreateSpell(currSpellHeld.Value);
         CurrentSpellsCast.Add(toCast);
         toCast.Cast(this);
+        ResetWand();
     }
 
     /// <summary>
     /// Hides particles, cancels any spell that would have been cast
     /// </summary>
-    public void CancelSpells()
+    public void ResetWand()
     {
         foreach (GameObject wandParticle in WandParticles)
         {
@@ -69,7 +70,7 @@ public class SpellCasting : MonoBehaviour
     /// </summary>
     public void EndAllSpells()
     {
-        CancelSpells();
+        ResetWand();
     }
 
     public bool RaycastFromWand(out RaycastHit hit)

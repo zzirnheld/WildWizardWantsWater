@@ -10,6 +10,7 @@ public class RightHandCaster : MonoBehaviour
     public GameObject Beam;
     public LineRenderer LRenderer;
     public SpellCasting spellCasting;
+    public RightHandPalette RHPalette;
 
     #region steamvractions
     public SteamVR_Action_Boolean TriggerHeld;
@@ -17,8 +18,9 @@ public class RightHandCaster : MonoBehaviour
 
     public enum Spells
     {
-        Fire,
-        Levitate
+        Fire = 0,
+        Levitate = 1,
+        Teleport = 2
     }
 
     public const int starMask = 1 << 9;
@@ -139,7 +141,7 @@ public class RightHandCaster : MonoBehaviour
         lastStarHit = -1;
         lastStarHitObj = null;
         LRenderer.positionCount = 0;
-        spellCasting.endSpell();
+        spellCasting.CancelSpells();
     }
 
     //returns whether or not a spell was cast
@@ -151,7 +153,8 @@ public class RightHandCaster : MonoBehaviour
             lastStarHit = -1;
             Debug.Log("CASTING " + spell);
             ClearLinesSet();
-            spellCasting.startSpell(spell.Value);
+            RHPalette.UnsummonPalette();
+            spellCasting.StartSpell(spell.Value);
         }
 
         return spell.HasValue;

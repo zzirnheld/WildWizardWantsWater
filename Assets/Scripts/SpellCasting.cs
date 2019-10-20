@@ -41,6 +41,7 @@ public class SpellCasting : MonoBehaviour
     /// <param name="fromSource"></param>
     public void CastSpell(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
+        Debug.Log($"Casting {currSpellHeld}");
         if (!currSpellHeld.HasValue)
         {
             ResetWand();
@@ -71,29 +72,24 @@ public class SpellCasting : MonoBehaviour
     public void EndAllSpells()
     {
         ResetWand();
+        foreach(Spell s in CurrentSpellsCast)
+        {
+            s.End(this);
+        }
+        CurrentSpellsCast.Clear();
     }
 
     public bool RaycastFromWand(out RaycastHit hit)
     {
         Vector3 wandDir = transform.TransformDirection(Vector3.forward);
         Debug.DrawRay(transform.position, wandDir * 100F);
-        if (Physics.Raycast(transform.position, wandDir, out hit, Mathf.Infinity))
-        {
-            return true;
-        }
-
-        return false;
+        return Physics.Raycast(transform.position, wandDir, out hit, Mathf.Infinity);
     }
 
     public bool RaycastFromWandWithMask(int mask, out RaycastHit hit)
     {
         Vector3 wandDir = transform.TransformDirection(Vector3.forward);
         Debug.DrawRay(transform.position, wandDir * 100F);
-        if (Physics.Raycast(transform.position, wandDir, out hit, Mathf.Infinity, mask))
-        {
-            return true;
-        }
-
-        return false;
+        return Physics.Raycast(transform.position, wandDir, out hit, Mathf.Infinity, mask);
     }
 }

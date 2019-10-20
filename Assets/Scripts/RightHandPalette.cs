@@ -21,6 +21,7 @@ public class RightHandPalette : MonoBehaviour
 
     public void OnPaletteDown(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
     {
+        rightHandCaster.spellCasting.EndAllSpells();
         if (!isSummoned)
         {
             SummonPalette();

@@ -53,8 +53,6 @@ public class RightHandCaster : MonoBehaviour
         spellsDictionary.Add(fireSet, Spells.Teleport);
 
         HashSet<Pair> levitateSet = new HashSet<Pair>(pairComparer);
-        levitateSet.Add(new Pair(7, 4));
-        levitateSet.Add(new Pair(4, 1));
         levitateSet.Add(new Pair(1, 3));
         levitateSet.Add(new Pair(3, 4));
         levitateSet.Add(new Pair(4, 5));

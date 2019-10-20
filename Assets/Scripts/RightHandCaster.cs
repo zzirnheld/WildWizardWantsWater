@@ -170,7 +170,7 @@ public class RightHandCaster : MonoBehaviour
         string str = "";
         foreach(Pair p in set)
         {
-            str += p.ToString();
+            str += p.ToString() + "; ";
         }
         return str;
     }

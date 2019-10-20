@@ -8,6 +8,8 @@ public abstract class Spell
     {
         switch (spell)
         {
+            case RightHandCaster.Spells.Fire:
+                return new FireSpell();
             case RightHandCaster.Spells.Levitate:
                 return new LevitateSpell();
             case RightHandCaster.Spells.Teleport:
@@ -20,5 +22,5 @@ public abstract class Spell
 
     public abstract void Cast(SpellCasting caster);
 
-    public abstract void End(SpellCasting caster);
+    public virtual void End(SpellCasting caster) { }
 }

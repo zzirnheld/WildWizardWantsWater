@@ -73,13 +73,13 @@ public class RightHandCaster : MonoBehaviour
         Vector3 wandDir = transform.TransformDirection(Vector3.forward);
         Debug.DrawRay(transform.position, wandDir*100F);
         RaycastHit starHit;
-        if (TriggerHeld.state)
+        if (TriggerHeld.state && spellCasting.CurrSpellHeld == null)
         {
             Beam.SetActive(true);
         }
         else
         {
-            Beam.SetActive(false);
+            Beam.SetActive(false);        //REACTIVATE
         }
         if (Physics.Raycast(transform.position, wandDir, out starHit, Mathf.Infinity, starMask))
         {
@@ -102,6 +102,12 @@ public class RightHandCaster : MonoBehaviour
         return -1;
     }
 
+    private void MakeLineToPosition(Vector3 position)
+    {
+        LRenderer.positionCount++;
+        LRenderer.SetPosition(LRenderer.positionCount - 1, position + transform.TransformDirection(Vector3.back * 0.01f * (LRenderer.positionCount + 10)));
+    }
+
     private void HitStar(GameObject starHit, int starNum)
     {
         if (lastStarHit != -1 && lastStarHit != starNum)
@@ -110,15 +116,13 @@ public class RightHandCaster : MonoBehaviour
             if (lastStarHitObj != null) {
                 if (LRenderer.positionCount == 0)
                 {
-                    LRenderer.positionCount++;
-                    LRenderer.SetPosition(LRenderer.positionCount - 1, lastStarHitObj.transform.position);
+                    MakeLineToPosition(lastStarHitObj.transform.position);
                 }
-                LRenderer.positionCount++;
-                LRenderer.SetPosition(LRenderer.positionCount - 1, starHit.transform.position);
+                MakeLineToPosition(starHit.transform.position);
             }
             lines.Add(new Pair(lastStarHit, starNum));
 
-            CastSpellIfValid();
+            if (CastSpellIfValid()) return;
         }
 
         lastStarHit = starNum;
@@ -154,9 +158,6 @@ public class RightHandCaster : MonoBehaviour
         Spells? spell = CheckSetAsSpell();
         if (spell.HasValue)
         {
-            lastStarHit = -1;
-            Debug.Log("CASTING " + spell);
-            ClearLinesSet();
             RHPalette.UnsummonPalette();
             spellCasting.StartSpell(spell.Value);
         }

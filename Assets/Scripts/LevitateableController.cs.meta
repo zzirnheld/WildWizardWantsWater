@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: 7271e87505e71534394133968ad4bd8b
+guid: d81a2c035bc986547ac2e8d10836f164
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences:
-  - BurningPrefab: {fileID: 100000, guid: 4f4be043c2b5a1a46afe89967b785ab1, type: 3}
+  defaultReferences: []
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

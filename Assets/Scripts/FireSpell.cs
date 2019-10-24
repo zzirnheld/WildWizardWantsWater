@@ -10,13 +10,16 @@ public class FireSpell : Spell
 
     public override void Cast(SpellCasting caster)
     {
+        Debug.Log("Casting a flame spell");
         this.caster = caster;
-        RaycastHit hit;
-        if(caster.RaycastFromWand(out hit))
+        RaycastHit hit = default(RaycastHit);
+        if(caster.RaycastFromWandDefaultMask(out hit))
         {
             burningObjController = hit.transform.gameObject.GetComponent<FlammableController>();
             burningObjController?.LightOnFire(this);
         }
+
+        Debug.Log($"Hit {hit.transform?.gameObject?.name}, burning controller ? {burningObjController}");
     }
 
     public override void End(SpellCasting caster)

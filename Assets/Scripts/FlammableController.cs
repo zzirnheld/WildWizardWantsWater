@@ -8,17 +8,24 @@ public class FlammableController : MonoBehaviour
     private bool burning = false;
     private FireSpell source;
 
+    public GameObject BurningPrefab;
+
+    private GameObject fireParticle;
+
     public void LightOnFire(FireSpell source)
     {
         burning = true;
         timeBurning = 0f;
         this.source = source;
+        fireParticle = Instantiate(BurningPrefab, transform.position, transform.rotation, transform);
+        fireParticle.transform.localScale = new Vector3(3, 3, 3);
     }
 
     public void StopBurning()
     {
         burning = false;
         source = null;
+        fireParticle.SetActive(false);
     }
 
     // Update is called once per frame

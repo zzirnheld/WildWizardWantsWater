@@ -5,12 +5,18 @@ using Valve.VR;
 
 public class SpellCasting : MonoBehaviour
 {
+    public ParticleSystem[] OnCastParticles = new ParticleSystem[3];
+
     private RightHandCaster.Spells? currSpellHeld;
+
+    public RightHandCaster.Spells? CurrSpellHeld { get { return currSpellHeld; } }
 
     public List<Spell> CurrentSpellsCast;
     
     public GameObject[] WandParticles = new GameObject[3];
     public GameObject CameraRig;
+
+    public const int InteractableMask = 1 << 11;
 
     #region steamvractions
     public SteamVR_Action_Boolean TriggerHeld;
@@ -31,7 +37,7 @@ public class SpellCasting : MonoBehaviour
     {
         Debug.Log($"Starting {spell}");
         currSpellHeld = spell;
-        WandParticles[(int) spell].SetActive(true);
+        WandParticles[(int) spell]?.SetActive(true);
     }
 
     /// <summary>
@@ -50,6 +56,7 @@ public class SpellCasting : MonoBehaviour
 
         Spell toCast = Spell.CreateSpell(currSpellHeld.Value);
         CurrentSpellsCast.Add(toCast);
+        OnCastParticles[(int)currSpellHeld.Value].Play();
         toCast.Cast(this);
         ResetWand();
     }
@@ -79,11 +86,9 @@ public class SpellCasting : MonoBehaviour
         CurrentSpellsCast.Clear();
     }
 
-    public bool RaycastFromWand(out RaycastHit hit)
+    public bool RaycastFromWandDefaultMask(out RaycastHit hit)
     {
-        Vector3 wandDir = transform.TransformDirection(Vector3.forward);
-        Debug.DrawRay(transform.position, wandDir * 100F);
-        return Physics.Raycast(transform.position, wandDir, out hit, Mathf.Infinity);
+        return RaycastFromWandWithMask(InteractableMask, out hit);
     }
 
     public bool RaycastFromWandWithMask(int mask, out RaycastHit hit)

@@ -5,18 +5,17 @@ using UnityEngine;
 
 public class LevitateSpell : Spell
 {
-    public const int LevitateableMask = 1 << 11;
-
     private GameObject levitating;
 
     public override void Cast(SpellCasting caster)
     {
         //raycast to the floor
         RaycastHit hit;
-        if (caster.RaycastFromWandWithMask(LevitateableMask, out hit))
+        if (caster.RaycastFromWandDefaultMask(out hit))
         {
             Debug.Log($"Levitating {hit.transform.gameObject.name}");
             levitating = hit.transform.gameObject;
+            if (levitating?.GetComponent<LevitateableController>() == null) return;
             hit.transform.parent = caster.gameObject.transform;
         }
         else

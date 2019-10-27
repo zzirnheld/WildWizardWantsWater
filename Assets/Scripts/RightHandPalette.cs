@@ -34,7 +34,6 @@ public class RightHandPalette : MonoBehaviour
 
     public void SummonPalette()
     {
-        Palette.transform.parent = null;
         Palette.SetActive(true);
         Vector3 wandDir = transform.TransformDirection(Vector3.forward);
         Palette.transform.position = Right_Hand.transform.position + (Right_Hand.transform.forward * 1);//transform.TransformPoint(wandDir);//Right_Hand.transform.position + wandDir;
@@ -48,9 +47,13 @@ public class RightHandPalette : MonoBehaviour
 
     public void UnsummonPalette()
     {
-        Palette.transform.parent = transform;
         rightHandCaster.ClearLinesSet();
         Palette.SetActive(false);
         isSummoned = false;
+    }
+
+    void OnDestroy()
+    {
+        paletteaction.onStateDown += OnPaletteDown;
     }
 }

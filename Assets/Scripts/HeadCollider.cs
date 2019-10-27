@@ -7,12 +7,14 @@ public class HeadCollider : MonoBehaviour
 {
     public static int LevelCount = 0;
 
+    public bool WaterFlowing;
+
     public GameObject light1;
     public GameObject light2;
 
     public Animator light1ani;
     public Animator light2ani;
-    AudioSource slurp;
+    public AudioSource slurp;
     public GameObject water;
     public GameObject head;
     bool slurpPlayed = false;

@@ -46,10 +46,13 @@ public class RightHandCaster : MonoBehaviour
         spellsDictionary = new Dictionary<HashSet<Pair>, Spells>();
 
         HashSet<Pair> fireSet = new HashSet<Pair>(pairComparer);
+        fireSet.Add(new Pair(6, 3));
         fireSet.Add(new Pair(3, 0));
         fireSet.Add(new Pair(0, 1));
         fireSet.Add(new Pair(1, 2));
         fireSet.Add(new Pair(2, 5));
+        fireSet.Add(new Pair(5, 8));
+        fireSet.Add(new Pair(8, 4));
         spellsDictionary.Add(fireSet, Spells.Fire);
 
         HashSet<Pair> teleportSet = new HashSet<Pair>(pairComparer);

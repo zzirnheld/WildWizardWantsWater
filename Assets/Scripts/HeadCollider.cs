@@ -16,10 +16,10 @@ public class HeadCollider : MonoBehaviour
 
     BoxCollider waterCol;
     BoxCollider headCol;
-
-    // Start is called before the first frame update
-    void Start()
+    
+    void Awake()
     {
+        Debug.Log("im wide awake");
         slurp = head.GetComponent<AudioSource>();
         light1ani = light1.GetComponent<Animator>();
         light2ani = light2.GetComponent<Animator>();
@@ -33,6 +33,7 @@ public class HeadCollider : MonoBehaviour
     {
         if (waterCol.bounds.Intersects(headCol.bounds))
         {
+            Debug.Log("intersectlol");
             if (!slurpPlayed) {
                 slurpPlayed = true;
                 slurp.PlayOneShot(slurp.clip, 1F);

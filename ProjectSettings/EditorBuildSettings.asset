@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WWWW Level 2.unity
     guid: 7454b0dce11076c42af0ed8aad533358
+  - enabled: 1
+    path: Assets/Scenes/WWWW Level 3.unity
+    guid: 304eea32f551d2d488519021b65d1ce8
   m_configObjects: {}

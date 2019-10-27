@@ -11,8 +11,9 @@ public class TeleportSpell : Spell
     {
         //raycast to the floor
         RaycastHit hit;
-        if(caster.RaycastFromWandWithMask(TeleportableMask, out hit))
+        if(caster.RaycastFromWandDefaultMask(out hit))
         {
+            if (hit.transform?.gameObject?.GetComponent<LevitateableController>() == null) return;
             caster.CameraRig.transform.position = hit.point;
         }
         caster.CurrentSpellsCast.Remove(this);

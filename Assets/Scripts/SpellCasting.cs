@@ -68,7 +68,9 @@ public class SpellCasting : MonoBehaviour
     {
         foreach (GameObject wandParticle in WandParticles)
         {
-            wandParticle?.SetActive(false);
+            if (wandParticle == null) continue;
+            
+            wandParticle.SetActive(false);
         }
         currSpellHeld = null;
     }

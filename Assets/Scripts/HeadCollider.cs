@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeadCollider : MonoBehaviour
 {
+    public static int LevelCount = 0;
+
     public GameObject light1;
     public GameObject light2;
 
@@ -40,6 +43,8 @@ public class HeadCollider : MonoBehaviour
                 light1ani.SetTrigger("fadeOut");
                 light2ani.SetTrigger("fadeOut");
                 print("WINWINWINWINWIN");//WIN CONDITION, NEXT LEVEL
+                LevelCount++;
+                SceneManager.LoadScene(LevelCount);
             }
         }
     }

@@ -13,7 +13,7 @@ public class TeleportSpell : Spell
         RaycastHit hit;
         if(caster.RaycastFromWandWithMask(TeleportableMask, out hit))
         {
-            caster.CameraRig.transform.position = hit.transform.position;
+            caster.CameraRig.transform.position = hit.point;
         }
         caster.CurrentSpellsCast.Remove(this);
     }

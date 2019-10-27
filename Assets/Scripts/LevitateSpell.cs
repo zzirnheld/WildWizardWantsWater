@@ -6,6 +6,7 @@ using UnityEngine;
 public class LevitateSpell : Spell
 {
     private GameObject levitating;
+    private Rigidbody levitatingRB;
 
     public override void Cast(SpellCasting caster)
     {
@@ -17,6 +18,12 @@ public class LevitateSpell : Spell
             levitating = hit.transform.gameObject;
             if (levitating?.GetComponent<LevitateableController>() == null) return;
             hit.transform.parent = caster.gameObject.transform;
+            levitatingRB = levitating.GetComponent<Rigidbody>();
+            if (levitatingRB != null)
+            {
+                levitatingRB.useGravity = false;
+                levitatingRB.isKinematic = true;
+            }
         }
         else
         {
@@ -28,5 +35,10 @@ public class LevitateSpell : Spell
     {
         if(levitating != null)
             levitating.transform.parent = null;
-    }
+        if (levitatingRB != null)
+        {
+            levitatingRB.useGravity = true;
+            levitatingRB.isKinematic = false;
+        }
+        }
 }

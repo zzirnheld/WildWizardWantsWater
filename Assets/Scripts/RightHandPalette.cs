@@ -54,6 +54,6 @@ public class RightHandPalette : MonoBehaviour
 
     void OnDestroy()
     {
-        paletteaction.onStateDown += OnPaletteDown;
+        paletteaction.onStateDown -= OnPaletteDown;
     }
 }

@@ -22,7 +22,6 @@ public class LevitateSpell : Spell
             if (levitatingRB != null)
             {
                 levitatingRB.useGravity = false;
-                levitatingRB.isKinematic = true;
             }
         }
         else
@@ -38,7 +37,6 @@ public class LevitateSpell : Spell
         if (levitatingRB != null)
         {
             levitatingRB.useGravity = true;
-            levitatingRB.isKinematic = false;
         }
-        }
+    }
 }

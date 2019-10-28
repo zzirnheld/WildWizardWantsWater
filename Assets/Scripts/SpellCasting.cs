@@ -25,7 +25,7 @@ public class SpellCasting : MonoBehaviour
 
     void Awake()
     {
-        TriggerHeld.AddOnStateUpListener(CastSpell, InputSrcs);
+        TriggerHeld.AddOnStateDownListener(CastSpell, InputSrcs);
         CurrentSpellsCast = new List<Spell>();
     }
 

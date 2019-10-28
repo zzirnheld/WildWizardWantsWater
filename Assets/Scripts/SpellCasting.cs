@@ -50,7 +50,7 @@ public class SpellCasting : MonoBehaviour
         Debug.Log($"Casting {currSpellHeld}");
         if (!currSpellHeld.HasValue)
         {
-            ResetWand();
+            EndAllSpells();
             return;
         }
 

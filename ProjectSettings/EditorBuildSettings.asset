@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/WWWW Level 0.unity
+    guid: 04cfea01d4de76d48b9971b6a2e556cf
+  - enabled: 1
     path: Assets/Scenes/WWWW Level 1.unity
     guid: 720e651d5ee13df4eb672b759869daa1
   - enabled: 1
@@ -17,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WWWW Level 4.unity
     guid: c6a58632cbc5e7f409bc25666ee3694c
+  - enabled: 1
+    path: Assets/Scenes/WWWW Level 5.unity
+    guid: 426be85a265e042498d36609e00a6dd7
   m_configObjects: {}

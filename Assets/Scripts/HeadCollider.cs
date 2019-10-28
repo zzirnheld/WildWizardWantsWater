@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,9 +18,15 @@ public class HeadCollider : MonoBehaviour
     public AudioSource slurp;
     public GameObject water;
     public GameObject head;
+    public GameObject victorywater1 = null;
+    public GameObject victorywater2 = null;
+    public GameObject victorywater3 = null;
     bool slurpPlayed = false;
 
     BoxCollider waterCol;
+    BoxCollider victorywater1Col;
+    BoxCollider victorywater2Col;
+    BoxCollider victorywater3Col;
     BoxCollider headCol;
     
     void Awake()
@@ -31,6 +38,11 @@ public class HeadCollider : MonoBehaviour
         waterCol = water.GetComponent<BoxCollider>();
         headCol = head.GetComponent<BoxCollider>();
         slurpPlayed = false;
+
+        if (victorywater1 == null) return;
+        victorywater1Col = victorywater1?.GetComponent<BoxCollider>();
+        victorywater2Col = victorywater2?.GetComponent<BoxCollider>();
+        victorywater3Col = victorywater3?.GetComponent<BoxCollider>();
     }
 
     // Update is called once per frame
@@ -39,7 +51,8 @@ public class HeadCollider : MonoBehaviour
         if (waterCol.bounds.Intersects(headCol.bounds))
         {
             Debug.Log("intersectlol");
-            if (!slurpPlayed) {
+            if (!slurpPlayed)
+            {
                 slurpPlayed = true;
                 slurp.PlayOneShot(slurp.clip, 1F);
                 light1ani.SetTrigger("fadeOut");
@@ -48,6 +61,12 @@ public class HeadCollider : MonoBehaviour
                 LevelCount++;
                 SceneManager.LoadScene(LevelCount);
             }
+        }
+
+        if (victorywater1 == null) return;
+        if (victorywater1Col.bounds.Intersects(headCol.bounds) || victorywater1Col.bounds.Intersects(headCol.bounds) || victorywater1Col.bounds.Intersects(headCol.bounds))
+        {
+            Application.Quit();
         }
     }
 }

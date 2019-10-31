@@ -16,6 +16,7 @@ public class HeadCollider : MonoBehaviour
     public Animator light1ani;
     public Animator light2ani;
     public AudioSource slurp;
+    public AudioClip slurpsound;
     public GameObject water;
     public GameObject head;
     public GameObject victorywater1 = null;
@@ -32,7 +33,7 @@ public class HeadCollider : MonoBehaviour
     void Awake()
     {
         Debug.Log("im wide awake");
-        slurp = head.GetComponent<AudioSource>();
+        //slurp = head.GetComponent<AudioSource>();
         light1ani = light1.GetComponent<Animator>();
         light2ani = light2.GetComponent<Animator>();
         waterCol = water.GetComponent<BoxCollider>();
@@ -50,16 +51,12 @@ public class HeadCollider : MonoBehaviour
     {
         if (waterCol.bounds.Intersects(headCol.bounds))
         {
-            Debug.Log("intersectlol");
+            //Debug.Log("intersectlol");
             if (!slurpPlayed)
             {
-                slurpPlayed = true;
-                slurp.PlayOneShot(slurp.clip, 1F);
-                light1ani.SetTrigger("fadeOut");
-                light2ani.SetTrigger("fadeOut");
-                print("WINWINWINWINWIN");//WIN CONDITION, NEXT LEVEL
-                LevelCount++;
-                SceneManager.LoadScene(LevelCount);
+                //AudioSource audio = head.GetComponent<AudioSource>();
+                slurp.PlayOneShot(slurpsound, 1F);
+                StartCoroutine(winCon());
             }
         }
 
@@ -68,5 +65,19 @@ public class HeadCollider : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+    IEnumerator winCon()
+    {
+        slurpPlayed = true;
+        //slurp.PlayOneShot(slurp.clip, 1F);
+        //print(slurp.clip);
+        //slurp.Play();
+        light1ani.SetTrigger("fadeOut");
+        light2ani.SetTrigger("fadeOut");
+        print("WINWINWINWINWIN");//WIN CONDITION, NEXT LEVEL
+
+        yield return new WaitForSeconds(4.5F);
+        LevelCount++;
+        SceneManager.LoadScene(LevelCount);
     }
 }
